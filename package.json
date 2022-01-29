@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "employee-cms",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Lex Slovik",
+  "license": "ISC",
+  "description": ""
+}
