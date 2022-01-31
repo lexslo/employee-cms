@@ -1,13 +1,9 @@
 const inquirer = require('inquirer');
 const cTable = require('console.table');
 
-// const Department = require('./lib/Department');
-// const Employee = require('./lib/Employee');
-// const Role = require('./lib/Role');
-
 const init = () => {
     inquirer.prompt({
-        name: 'choice',
+        name: 'menu',
         type: 'list',
         message: 'What would you like to do?',
         choices: [
@@ -29,39 +25,36 @@ const init = () => {
             return true;
         }
     })
-    .then(choice => {
-        switch (choice) {
+    .then(answer => {
+        switch (answer.menu) {
             case 'View all departments': 
                 console.log('View all departments');
                 // selectAllDepartments();
-                init();
-                break;
+                return init();
             case 'View all roles': 
                 console.log('View all roles');
                 // selectAllRoles();
-                init();
-                break;
+                return init();
             case 'View all employees': 
                 console.log('View all employees');
                 // selectAllEmployees();
-                init();
-                break;
+                return init();
             case 'Add a department':
                 console.log('Add new department');
                 // addNewDepartment();
-                init();
+                return init();
             case 'Add a role':
                 console.log('Add new role');
                 // addNewRole();
-                init();
+                return init();
             case 'Add an employee':
                 console.log('Add new employee');
                 // addNewEmployee();
-                init();
+                return init();
             case 'Update employee role':
                 console.log('Update employee role');
                 // updateEmployeeRole();
-                init();
+                return init();
             case 'Quit':
                 console.log('Goodbye!')
                 return false;
