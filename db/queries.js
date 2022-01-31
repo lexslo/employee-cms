@@ -38,7 +38,7 @@ const selectAllEmployees = () => {
 
 // add new department
 const addNewDepartment = name => {
-    const sql = `INSERT INTO department VALUES (?)`;
+    const sql = `INSERT INTO department (name) VALUES (?)`;
     const data = name;
 
     db.query(sql, data, (err, result) => {
@@ -51,7 +51,7 @@ const addNewDepartment = name => {
 
 // add new role
 const addNewRole = (title, dept_id, salary) => {
-    const sql = `INSERT INTO role VALUES (?,?,?)`;
+    const sql = `INSERT INTO role (title, dept_id, salary) VALUES (?,?,?)`;
     const data = [title, dept_id, salary];
 
     return db
@@ -62,7 +62,7 @@ const addNewRole = (title, dept_id, salary) => {
 
 // add new employee
 const addNewEmployee = (first_name, last_name, role_id, manager_id) => {
-    const sql = `INSERT INTO employee VALUES (?,?,?,?)`;
+    const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)`;
     const data = [first_name, last_name, role_id, manager_id];
 
     return db
