@@ -1,5 +1,13 @@
 const inquirer = require('inquirer');
 const cTable = require('console.table');
+const { 
+    selectAllDepartments, 
+    selectAllRoles,
+    selectAllEmployees,
+    addNewDepartment,
+    addNewRole,
+    addNewEmployee,
+    updateEmployeeRole } = require('./db/queries');
 
 const init = () => {
     inquirer.prompt({
@@ -29,31 +37,31 @@ const init = () => {
         switch (answer.menu) {
             case 'View all departments': 
                 console.log('View all departments');
-                // selectAllDepartments();
+                selectAllDepartments();
                 return init();
             case 'View all roles': 
                 console.log('View all roles');
-                // selectAllRoles();
+                selectAllRoles();
                 return init();
             case 'View all employees': 
                 console.log('View all employees');
-                // selectAllEmployees();
+                selectAllEmployees();
                 return init();
             case 'Add a department':
                 console.log('Add new department');
-                // addNewDepartment();
+                addNewDepartment();
                 return init();
             case 'Add a role':
                 console.log('Add new role');
-                // addNewRole();
+                addNewRole();
                 return init();
             case 'Add an employee':
                 console.log('Add new employee');
-                // addNewEmployee();
+                addNewEmployee();
                 return init();
             case 'Update employee role':
                 console.log('Update employee role');
-                // updateEmployeeRole();
+                updateEmployeeRole();
                 return init();
             case 'Quit':
                 console.log('Goodbye!')

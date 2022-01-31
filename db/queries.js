@@ -1,48 +1,58 @@
 const db = require('./connection');
 
-// select all from departments
+// For view all departments
 const selectAllDepartments = () => {
     const sql = `SELECT * FROM department`;
 
-    return db
-        .promise()
-        .query(sql)
-        .then(([rows]) => rows)
+    db.query(sql, (err, result) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.table(result);
+    });
 };
 
 // select all from roles
-const selectAllDepartments = () => {
+const selectAllRoles = () => {
     const sql = `SELECT * FROM role`;
 
-    return db
-        .promise()
-        .query(sql)
-        .then(([rows]) => rows)
+    db.query(sql, (err, result) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.table(result);
+    });
 };
 
 // select all from employees
-const selectAllDepartments = () => {
+const selectAllEmployees = () => {
     const sql = `SELECT * FROM employee`;
 
-    return db
-        .promise()
-        .query(sql)
-        .then(([rows]) => rows)
+    db.query(sql, (err, result) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.table(result);
+    });
 };
 
 // add new department
 const addNewDepartment = name => {
-    const sql = `INSERT INTO department VALUES (${name})`;
+    const sql = `INSERT INTO department VALUES (?)`;
+    const data = name;
 
-    return db
-        .promise()
-        .query(sql)
-        .then(([rows]) => rows)
+    db.query(sql, data, (err, result) => {
+        if (err) {
+            return console.log(err);
+        }
+        console.table(result.affectedRows);
+    });
 };
 
 // add new role
 const addNewRole = (title, dept_id, salary) => {
-    const sql = `INSERT INTO role VALUES (${title},${dept_id},${salary})`;
+    const sql = `INSERT INTO role VALUES (?,?,?)`;
+    const data = [title, dept_id, salary];
 
     return db
         .promise()
@@ -52,7 +62,8 @@ const addNewRole = (title, dept_id, salary) => {
 
 // add new employee
 const addNewEmployee = (first_name, last_name, role_id, manager_id) => {
-    const sql = `INSERT INTO employee VALUES (${first_name},${last_name},${role_id},${manager_id})`;
+    const sql = `INSERT INTO employee VALUES (?,?,?,?)`;
+    const data = [first_name, last_name, role_id, manager_id];
 
     return db
         .promise()
@@ -62,10 +73,21 @@ const addNewEmployee = (first_name, last_name, role_id, manager_id) => {
 
 // update employee role
 const updateEmployeeRole = (id, role_id) => {
-    const sql = `UPDATE employee SET role_id = ${role_id} WHERE id = ${id}`;
+    const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
+    const data = [id, role_id];
 
     return db
         .promise()
         .query(sql)
         .then(([rows]) => rows)
+};
+
+module.exports = { 
+    selectAllDepartments, 
+    selectAllRoles,
+    selectAllEmployees,
+    addNewDepartment,
+    addNewRole,
+    addNewEmployee,
+    updateEmployeeRole
 };
